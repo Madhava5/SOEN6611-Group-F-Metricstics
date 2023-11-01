@@ -1,1 +1,1 @@
-# SOEN6611-Group-F-Metricstics
+# Course Project for SOEN6611:Software Measurement - Group-F - Metricstics
