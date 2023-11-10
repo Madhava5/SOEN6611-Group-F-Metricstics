@@ -1,6 +1,7 @@
 import unittest
 from Metricstics import Metricstics
 
+
 class MetricsticsTest(unittest.TestCase):
 
     def initialSetUp(self):
@@ -27,7 +28,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(self.metrics.minimum(), (1, 5))
 
     def testing_max(self):
-        self.assertEqual(self.metrics.maximum(), (2,3))
+        self.assertEqual(self.metrics.maximum(), (2, 3))
 
     def testing_empty_data(self):
         metrics = Metricstics([])
@@ -75,8 +76,9 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.median(), 3)
         self.assertEqual(metrics.mode(), [3, 4, 5])
         self.assertAlmostEqual(metrics.standard_deviation(), 1.0, places=4)
-        self.assertAlmostEqual(metrics.mad(), 0.8, places=4)
-        self.assertEqual(metrics.min_max(), (1, 5))
+        self.assertAlmostEqual(metrics.mean_absolute_deviation(), 0.8, places=4)
+        self.assertEqual(metrics.minimum(), (1, 5))
+        self.assertEqual(metrics.maximum(), (1, 5))
 
     def testing_large_data_set(self):
         data = list(range(1, 10001))
@@ -85,7 +87,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.median(), 5000)
         self.assertEqual(metrics.mode(), [1])
         self.assertAlmostEqual(metrics.standard_deviation(), 2886.8956, places=4)
-        self.assertAlmostEqual(metrics.mad(), 2886.5, places=4)
+        self.assertAlmostEqual(metrics.mean_absolute_deviation(), 2886.5, places=4)
         self.assertEqual(metrics.minimum(), (1, 10000))
         self.assertEqual(metrics.maximum(), (1, 10000))
 

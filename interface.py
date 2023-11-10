@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 # Interface for Metrics
 class IMetrics(ABC):
 
@@ -20,12 +21,17 @@ class IMetrics(ABC):
         pass
 
     @abstractmethod
-    def mad(self):
+    def mean_absolute_deviation(self):
         pass
 
     @abstractmethod
-    def min_max(self):
+    def minimum(self):
         pass
+
+    @abstractmethod
+    def maximum(self):
+        pass
+
 
 # Interface for Random Number Generation
 class IRandom(ABC):
