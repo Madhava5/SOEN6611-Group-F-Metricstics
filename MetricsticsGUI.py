@@ -7,18 +7,19 @@ class MetricsticsGUI:
         self.root = root
         self.root.title("Metricstics Calculator")
 
-        self.Metricstics = Metricstics()
+        # Create an instance of Metricstics without data
+        self.Metricstics = Metricstics([])  # Pass an empty list initially
 
         # Input Frame
         input_frame = tk.Frame(root)
         input_frame.pack(padx=10, pady=10)
 
-        tk.Label(input_frame, text="Genertaed Numbers:").grid(row=0, column=0, sticky="w")
-        self.generated_numbers_label = tk.Label(input_frame, text="")
-        self.generated_numbers_label.grid(row=0, column=1, columnspan=2, sticky="w")
+        tk.Label(input_frame, text="Input Numbers (comma-separated):").grid(row=0, column=0, sticky="w")
+        self.input_entry = tk.Entry(input_frame)
+        self.input_entry.grid(row=0, column=1, columnspan=2, sticky="w")
 
         # Buttons
-        generate_button = tk.Button(input_frame, text="Generate Numbers", command=self.generate_numbers)
+        generate_button = tk.Button(input_frame, text="Generate Random Numbers", command=self.generate_numbers)
         generate_button.grid(row=1, column=0, pady=10)
 
         calculate_button = tk.Button(input_frame, text="Calculate Statistics", command=self.calculate_statistics)
@@ -36,30 +37,36 @@ class MetricsticsGUI:
         self.statistics_label.grid(row=0, column=1, columnspan=2, sticky="w")
 
     def generate_numbers(self):
-       try:
+        try:
             generated_numbers = self.Metricstics.load_from_random()
-            self.generated_numbers_label.config(text=generated_numbers)
+            self.Metricstics.sort_data_set()  # Sort the generated numbers
+            self.input_entry.delete(0, tk.END)
+            self.input_entry.insert(0, ", ".join(map(str, self.Metricstics.get_generated_list())))
             messagebox.showinfo("Success", "Numbers generated successfully!")
-       except ValueError:
-            messagebox.showerror("Error", "Invalid input. Please enter comma-separated numbers.")
+        except ValueError:
+            messagebox.showerror("Error", "Invalid input. Please enter valid comma-separated numbers.")
 
     def calculate_statistics(self):
-        if not self.Metricstics.get_generated_list():
-            messagebox.showerror("Error", "Generate numbers first!")
-        else:
-            self.Metricstics.sort_data_set()
+        input_data = self.input_entry.get()
+        try:
+            # Convert input string to list of numbers
+            numbers = [float(num.strip()) for num in input_data.split(",")]
+            self.Metricstics = Metricstics(numbers)
+            self.Metricstics.sort_data_set()  # Sort the data
             statistics_text = f"Minimum: {self.Metricstics.minimum()}\n" \
                               f"Maximum: {self.Metricstics.maximum()}\n" \
                               f"Mode: {self.Metricstics.mode()}\n" \
                               f"Median: {self.Metricstics.median()}\n" \
-                              f"Mean: {self.Metricstics.arithmetic_mean()}\n" \
+                              f"Mean: {self.Metricstics.mean()}\n" \
                               f"Mean Absolute Deviation: {self.Metricstics.mean_absolute_deviation()}\n" \
                               f"Standard Deviation: {self.Metricstics.standard_deviation()}"
             self.statistics_label.config(text=statistics_text)
+        except ValueError:
+            messagebox.showerror("Error", "Invalid input. Please enter valid comma-separated numbers.")
 
     def reset_data(self):
         self.Metricstics.reset()
-        #self.input_entry.delete(0, 'end')
+        self.input_entry.delete(0, tk.END)
         self.statistics_label.config(text="")
 
 if __name__ == "__main__":
