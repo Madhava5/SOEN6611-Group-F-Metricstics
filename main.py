@@ -97,59 +97,58 @@ def menu(metrics):
 
         choice = int(input())
 
-        match choice:
-            case 1:
-                mean_value = metrics.mean()
-                metrics.session_data['mean'] = mean_value
-                print("Mean:", mean_value)
-            case 2:
-                median_value = metrics.median()
-                metrics.session_data['median'] = median_value
-                print("Median:", median_value)
-            case 3:
-                mode_value = metrics.mode()
-                metrics.session_data['mode'] = mode_value
-                print("Mode:", mode_value)
-            case 4:
-                std_deviation_value = metrics.standard_deviation()
-                metrics.session_data['standard_deviation'] = std_deviation_value
-                print("Standard Deviation:", std_deviation_value)
-            case 5:
-                mean_absolute_deviation_value = metrics.mean_absolute_deviation()
-                metrics.session_data['mean_absolute_deviation'] = mean_absolute_deviation_value
-                print("Mean_absolute_deviation:", mean_absolute_deviation_value)
-            case 6:
-                minimum_value = metrics.minimum()
-                metrics.session_data['minimum'] = minimum_value
-                print("Minimum:", minimum_value)
-            case 7:
-                maximum_value = metrics.maximum()
-                metrics.session_data['maximum'] = maximum_value
-                print("Minimum:", maximum_value)
-            case 8:
-                mean_value = metrics.mean()
-                median_value = metrics.median()
-                mode_value = metrics.mode()
-                standard_deviation_value = metrics.standard_deviation()
-                mean_absolute_deviation_value = metrics.mean_absolute_deviation()
-                minimum_value = metrics.minimum()
-                maximum_value = metrics.maximum()
-                metrics.session_data['mean'] = mean_value
-                metrics.session_data['median'] = median_value
-                metrics.session_data['mode'] = mode_value
-                metrics.session_data['standard_deviation'] = standard_deviation_value
-                metrics.session_data['mean_absolute_deviation'] = mean_absolute_deviation_value
-                metrics.session_data['minimum'] = minimum_value
-                metrics.session_data['maximum'] = maximum_value
-                print("Mean:", mean_value)
-                print("Median:", median_value)
-                print("Mode:", mode_value)
-                print("Standard Deviation:", standard_deviation_value)
-                print("Mean_absolute_deviation:", mean_absolute_deviation_value)
-                print("Minimum:", minimum_value)
-                print("Maximum:", maximum_value)
-            case _:
-                print("Wrong Input.")
+        if choice == 1:
+           mean_value = metrics.mean()
+           metrics.session_data['mean'] = mean_value
+           print("Mean:", mean_value)
+        elif choice == 2:
+            median_value = metrics.median()
+            metrics.session_data['median'] = median_value
+            print("Median:", median_value)
+        elif choice == 3:
+            mode_value = metrics.mode()
+            metrics.session_data['mode'] = mode_value
+            print("Mode:", mode_value)
+        elif choice == 4:
+            std_deviation_value = metrics.standard_deviation()
+            metrics.session_data['standard_deviation'] = std_deviation_value
+            print("Standard Deviation:", std_deviation_value)
+        elif choice == 5:
+            mean_absolute_deviation_value = metrics.mean_absolute_deviation()
+            metrics.session_data['mean_absolute_deviation'] = mean_absolute_deviation_value
+            print("Mean_absolute_deviation:", mean_absolute_deviation_value)
+        elif choice == 6:
+            minimum_value = metrics.minimum()
+            metrics.session_data['minimum'] = minimum_value
+            print("Minimum:", minimum_value)
+        elif choice == 7:
+            maximum_value = metrics.maximum()
+            metrics.session_data['maximum'] = maximum_value
+            print("Minimum:", maximum_value)
+        elif choice == 8:
+            mean_value = metrics.mean()
+            median_value = metrics.median()
+            mode_value = metrics.mode()
+            standard_deviation_value = metrics.standard_deviation()
+            mean_absolute_deviation_value = metrics.mean_absolute_deviation()
+            minimum_value = metrics.minimum()
+            maximum_value = metrics.maximum()
+            metrics.session_data['mean'] = mean_value
+            metrics.session_data['median'] = median_value
+            metrics.session_data['mode'] = mode_value
+            metrics.session_data['standard_deviation'] = standard_deviation_value
+            metrics.session_data['mean_absolute_deviation'] = mean_absolute_deviation_value
+            metrics.session_data['minimum'] = minimum_value
+            metrics.session_data['maximum'] = maximum_value
+            print("Mean:", mean_value)
+            print("Median:", median_value)
+            print("Mode:", mode_value)
+            print("Standard Deviation:", standard_deviation_value)
+            print("Mean_absolute_deviation:", mean_absolute_deviation_value)
+            print("Minimum:", minimum_value)
+            print("Maximum:", maximum_value)
+        else:
+            print("Wrong Input.")
 
     except Exception as e:
         print(f"Error occurred: {e}")

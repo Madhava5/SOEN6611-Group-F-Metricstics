@@ -1,25 +1,16 @@
 from tkinter import messagebox
-
-from interface import IMetrics
 import math
 import random
 
-
-class Metricstics(IMetrics):
-    # def __init__(self,data):
-    #     try:
-    #         self.random_numbers = []
-    #         self.sorted_data_set = []
-    #         self.session_data = {'data': self.data}
-    #     except Exception as e:
-    #         raise Exception(f"Error occurred while initializing METRICSTICS: {e}")
-
-    # def sort_data_set(self):
-    #     self.sorted_data_set = sorted(self.random_numbers)
-
-    def __init__(self, data):
+class Metricstics:
+    def __init__(self, data=None):
         try:
-            self.data = sorted(data)
+            if data is not None:
+                self.data = sorted(data)
+            else:
+                self.data = []
+                self.load_from_random()
+                self.sort_data_set()  # Sort the generated numbers
             self.session_data = {'data': self.data}
         except Exception as e:
             raise Exception(f"Error occurred while initializing Metricstics: {e}")
@@ -49,7 +40,6 @@ class Metricstics(IMetrics):
 
     def median(self):
         try:
-
             n = len(self.data)
             if n % 2 == 0:
                 mid1 = self.data[n // 2 - 1]
@@ -69,7 +59,6 @@ class Metricstics(IMetrics):
             raise Exception("Error: Cannot calculate mean for an empty dataset.")
 
     def mean_absolute_deviation(self):
-
         try:
             mean = self.mean()
             mad = sum(abs(num - mean) for num in self.data) / len(self.data)
@@ -86,14 +75,14 @@ class Metricstics(IMetrics):
         except Exception as e:
             raise Exception(f"Error occurred while calculating standard deviation: {e}")
 
-    # def load_from_random(self):
-    #   for _ in range(1000):
-    #      random_value = round(random.uniform(1, 1000), 2)
-    #     self.random_numbers.append(random_value)
-    # return ", ".join(map(str, self.random_numbers))
+    def load_from_random(self):
+        self.data = [round(random.uniform(1, 1000), 2) for _ in range(1000)]
 
     def reset(self):
         self.data.clear()
+
+    def sort_data_set(self):
+        self.data = sorted(self.data)
 
     def get_generated_list(self):
         return self.data
