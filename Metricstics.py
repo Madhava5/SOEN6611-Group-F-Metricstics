@@ -1,84 +1,128 @@
+from tkinter import messagebox
 import math
 import random
 
 class Metricstics:
-    def __init__(self):
-        self.random_numbers = []
-        self.sorted_data_set = []
-
-    def sort_data_set(self):
-        self.sorted_data_set = sorted(self.random_numbers)
+    def __init__(self, data=None):
+        try:
+            if data is not None:
+                self.data = sorted(data)
+            else:
+                self.data = []
+                self.load_from_random()
+                self.sort_data_set()  # Sort the generated numbers
+            self.session_data = {'data': self.data}
+        except Exception as e:
+            raise Exception(f"Error occurred while initializing Metricstics: {e}")
 
     def minimum(self):
-        self.sort_data_set()
-        return self.sorted_data_set[0]
+        try:
+            return min(self.data)
+        except Exception as e:
+            raise Exception(f"Error occurred while calculating minimum: {e}")
 
     def maximum(self):
-        self.sort_data_set()
-        return self.sorted_data_set[-1]
+        try:
+            return max(self.data)
+        except Exception as e:
+            raise Exception(f"Error occurred while calculating maximum: {e}")
 
     def mode(self):
-        num_counts = {}
-        for num in self.random_numbers:
-            num_counts[num] = num_counts.get(num, 0) + 1
-        max_freq = max(num_counts.values())
-        all_mode = [key for key, value in num_counts.items() if value == max_freq]
-        return all_mode
+        try:
+            num_counts = {}
+            for num in self.data:
+                num_counts[num] = num_counts.get(num, 0) + 1
+            max_freq = max(num_counts.values())
+            all_mode = [key for key, value in num_counts.items() if value == max_freq]
+            return all_mode
+        except Exception as e:
+            raise Exception(f"Error occurred while calculating mode: {e}")
 
     def median(self):
-        self.sort_data_set()
-        n = len(self.sorted_data_set)
-        if n % 2 == 0:
-            mid1 = self.sorted_data_set[n // 2 - 1]
-            mid2 = self.sorted_data_set[n // 2]
-            median = (mid1 + mid2) / 2
-        else:
-            median = self.sorted_data_set[n // 2]
-        return round(median, 2)
+        try:
+            n = len(self.data)
+            if n % 2 == 0:
+                mid1 = self.data[n // 2 - 1]
+                mid2 = self.data[n // 2]
+                median = (mid1 + mid2) / 2
+            else:
+                median = self.data[n // 2]
+            return round(median, 2)
+        except Exception as e:
+            raise Exception(f"Error occurred while calculating median: {e}")
 
-    def arithmetic_mean(self):
-        mean = sum(self.random_numbers) / len(self.random_numbers)
-        return round(mean, 2)
+    def mean(self):
+        try:
+            mean = sum(self.data) / len(self.data)
+            return round(mean, 2)
+        except ZeroDivisionError:
+            raise Exception("Error: Cannot calculate mean for an empty dataset.")
 
     def mean_absolute_deviation(self):
-        mean = self.arithmetic_mean()
-        mad = sum(abs(num - mean) for num in self.random_numbers) / len(self.random_numbers)
-        return round(mad, 2)
+        try:
+            mean = self.mean()
+            mad = sum(abs(num - mean) for num in self.data) / len(self.data)
+            return round(mad, 2)
+        except Exception as e:
+            raise Exception(f"Error occurred while calculating mean_absolute_deviation: {e}")
 
     def standard_deviation(self):
-        mean = self.arithmetic_mean()
-        variance = sum((num - mean) ** 2 for num in self.random_numbers) / len(self.random_numbers)
-        standard_deviation = math.sqrt(variance)
-        return round(standard_deviation, 2)
+        try:
+            mean = self.mean()
+            variance = sum((num - mean) ** 2 for num in self.data) / len(self.data)
+            standard_deviation = math.sqrt(variance)
+            return round(standard_deviation, 2)
+        except Exception as e:
+            raise Exception(f"Error occurred while calculating standard deviation: {e}")
 
     def load_from_random(self):
-        for _ in range(1000):
-            random_value = round(random.uniform(1, 1000), 2)
-            self.random_numbers.append(random_value)
-        return ", ".join(map(str, self.random_numbers))
+        self.data = [round(random.uniform(1, 1000), 2) for _ in range(1000)]
 
     def reset(self):
-        self.random_numbers.clear()
+        self.data.clear()
+
+    def sort_data_set(self):
+        self.data = sorted(self.data)
 
     def get_generated_list(self):
-        return self.random_numbers
+        return self.data
 
+    def calculate_and_display(self, display, method):
+        result = ""
+        try:
+            if method == "m":
+                result = str(self.minimum())
+            elif method == "M":
+                result = str(self.maximum())
+            elif method == "o":
+                result = str(self.mode())
+            elif method == "d":
+                result = str(self.median())
+            elif method == "μ":
+                result = str(self.mean())
+            elif method == "MAD":
+                result = str(self.mean_absolute_deviation())
+            elif method == "σ":
+                result = str(float(self.standard_deviation()))
 
-if __name__ == "__main__":
-    operations = Metricstics()
+            display.config(text=result)
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
 
-    # Load data from random numbers
-    print("Generated Random Numbers: ", operations.load_from_random())
+    def calculate_all(self, all_displays):
+        try:
+            all_results = [
+                self.minimum(),
+                self.maximum(),
+                self.mode(),
+                self.median(),
+                self.mean(),
+                self.mean_absolute_deviation(),
+                self.standard_deviation()
+            ]
 
-    # Calculate and display statistics
-    print("Minimum:", operations.minimum())
-    print("Maximum:", operations.maximum())
-    print("Mode:", operations.mode())
-    print("Median:", operations.median())
-    print("Mean:", operations.arithmetic_mean())
-    print("Mean Absolute Deviation:", operations.mean_absolute_deviation())
-    print("Standard Deviation:", operations.standard_deviation())
+            for i, result in enumerate(all_results):
+                all_displays[i].config(text=str(result))
 
-    # Reset the data
-    operations.reset()
-    print("Data Reset. Generated List:", operations.get_generated_list())
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
