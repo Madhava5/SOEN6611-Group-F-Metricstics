@@ -11,6 +11,31 @@ Welcome to METRICSTICS, a robust system designed for computing descriptive stati
 - **Mean Absolute Deviation (MAD):** METRICSTICS evaluates the average absolute deviation of each data point from the mean.
 - **Standard Deviation (σ):** The system measures the spread of data by calculating the square root of the average squared deviations from the mean.
 
+
+## Roles and Responsibilites
+#1Abhishek Kanuganti(40224734)
+
+Worked with Development of Code (problem4)
+Working with calculating Physical and logical SLOC (problem4)
+
+#2Madhava Sai Kumar Karnati(40227757)
+
+Worked with Development of Code , Structuring code , Writing GUI code(problem 4)
+Working with calculating cyclomatic number (problem5)
+
+#3Vishal Karmakar(40220935)
+
+Working with designing Scatter plot to analyse correlations between the data for
+Logical SLOC and WMC (problem 8)
+
+#4Dharamjeet Kaur(40227330)
+Working with calculating WMC, CF, and LCOM* (problem 6)
+
+#5Simranjeet Kaur(40232877)
+Working with providing estimate of the effort towards the project using UCP (problem 1).
+Working with Documenting the report for D2.
+
+
 ## Usage
 Simply input your data values, and METRICSTICS will provide comprehensive descriptive statistics, aiding your data analysis needs. Whether you're dealing with real-world data or conducting experiments with artificial data, METRICSTICS is your go-to solution for meaningful insights.
 
