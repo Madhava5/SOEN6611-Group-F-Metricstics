@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from Metricstics import Metricstics
+from GraphGenerator import GraphGenerator
 
 class MetricsticsGUI:
     def __init__(self, root):
@@ -36,6 +37,13 @@ class MetricsticsGUI:
         self.statistics_label = tk.Label(output_frame, text="")
         self.statistics_label.grid(row=0, column=1, columnspan=2, sticky="w")
 
+        # Graphs Frame
+        graphs_frame = tk.Frame(root)
+        graphs_frame.pack(padx=10, pady=10)
+
+        generate_graphs_button = tk.Button(graphs_frame, text="Generate Graphs", command=self.generate_all_graphs)
+        generate_graphs_button.pack()
+
     def generate_numbers(self):
         try:
             generated_numbers = self.Metricstics.load_from_random()
@@ -68,6 +76,27 @@ class MetricsticsGUI:
         self.Metricstics.reset()
         self.input_entry.delete(0, tk.END)
         self.statistics_label.config(text="")
+
+    def generate_all_graphs(self):
+        try:
+            statistics_values = [
+                self.Metricstics.minimum(),
+                self.Metricstics.maximum(),
+                self.Metricstics.median(),
+                self.Metricstics.mean(),
+                self.Metricstics.mean_absolute_deviation(),
+                self.Metricstics.standard_deviation()
+            ]
+
+            GraphGenerator.generate_bar_chart(statistics_values)
+            GraphGenerator.generate_box_plot(statistics_values)
+            GraphGenerator.generate_histogram(self.Metricstics.get_all_repeated_values())
+            GraphGenerator.generate_dot_plot(statistics_values)
+            GraphGenerator.generate_line_chart(statistics_values)
+            GraphGenerator.generate_violin_plot(statistics_values)
+
+        except Exception as e:
+            messagebox.showerror("Error", str(e))
 
 if __name__ == "__main__":
     root = tk.Tk()

@@ -27,12 +27,35 @@ class Metricstics:
         except Exception as e:
             raise Exception(f"Error occurred while calculating maximum: {e}")
 
+    def get_all_repeated_values(self):
+        try:
+            num_counts = {}
+            repeated_values = []
+
+            for num in self.data:
+                num_counts[num] = num_counts.get(num, 0) + 1
+
+            for key, value in num_counts.items():
+                if value > 1:
+                    for i in range(value):
+                      repeated_values.append(key)
+
+            return repeated_values
+        except Exception as e:
+            raise Exception(f"Error occurred while getting repeated values: {e}")
+
     def mode(self):
         try:
             num_counts = {}
             for num in self.data:
                 num_counts[num] = num_counts.get(num, 0) + 1
+
             max_freq = max(num_counts.values())
+
+            # Check if there are no repeated values
+            if max_freq == 1:
+                return 0
+
             all_mode = [key for key, value in num_counts.items() if value == max_freq]
             return all_mode
         except Exception as e:
