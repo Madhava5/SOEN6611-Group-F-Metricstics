@@ -1,5 +1,9 @@
 import unittest
-from Metricstics import Metricstics
+import sys
+#write your system path
+#sys.path.insert(0, r'C:\Users\14389\OneDrive\Documents\SM_20th November\SOEN6611-Group-F-Metricstics')
+from Metricstics.Metricstics import Metricstics
+
 
 
 class MetricsticsTest(unittest.TestCase):
@@ -31,6 +35,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(self.metrics.maximum(), (2, 3))
 
     def testing_empty_data(self):
+        print("testing empty dataset")
         metrics = Metricstics([])
         self.assertEqual(metrics.mean(), 0)
         self.assertIsNone(metrics.median())
@@ -41,6 +46,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.maximum(), (None, None))
 
     def testing_single_data_point(self):
+        print("testing_single_data_point")
         metrics = Metricstics([5])
         self.assertEqual(metrics.mean(), 5)
         self.assertEqual(metrics.median(), 5)
@@ -51,6 +57,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.maximum(), (5, 5))
 
     def testing_negative_numbers(self):
+        print("testing_negative_numbers")
         metrics = Metricstics([-1, -2, -3, -4, -5])
         self.assertEqual(metrics.mean(), -3.0)
         self.assertEqual(metrics.median(), -3)
@@ -61,6 +68,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.maximum(), (-5, -3))
 
     def testing_floating_point_numbers(self):
+        print("testing_floating_point_numbers")
         metrics = Metricstics([1.5, 2.5, 3.5])
         self.assertAlmostEqual(metrics.mean(), 2.5, places=4)
         self.assertAlmostEqual(metrics.median(), 2.5, places=4)
@@ -70,7 +78,8 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.minimum(), (1.5, 3.5))
         self.assertEqual(metrics.maximum(), (2.5, 3.5))
 
-    def testing_duplicate_values(self):
+    def testing_duplicatevalues(self):
+        print("testing_duplicate_values")
         metrics = Metricstics([1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5])
         self.assertAlmostEqual(metrics.mean(), 3.0)
         self.assertEqual(metrics.median(), 3)
@@ -81,6 +90,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.maximum(), (1, 5))
 
     def testing_large_data_set(self):
+        print("testing_large_data_set")
         data = list(range(1, 10001))
         metrics = Metricstics(data)
         self.assertEqual(metrics.mean(), 5000.5)
@@ -92,6 +102,7 @@ class MetricsticsTest(unittest.TestCase):
         self.assertEqual(metrics.maximum(), (1, 10000))
 
     def testing_mixed_data_types(self):
+        print("testing_mixed_data_types")
         metrics = Metricstics([1, 2, 3, 4, "5"])
         with self.assertRaises(TypeError):
             metrics.mean()
