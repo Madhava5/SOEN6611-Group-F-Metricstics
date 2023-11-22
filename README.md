@@ -13,6 +13,8 @@ Welcome to METRICSTICS, a robust system designed for computing descriptive stati
 
 
 ## Roles and Responsibilites
+
+https://docs.google.com/spreadsheets/d/1vH873eCx2WMg1KkuAurMLEoTIht_doST5vyglzxykWc/edit#gid=0
 #1Abhishek Kanuganti(40224734)
 
 - Worked with Development of Code (problem4)
