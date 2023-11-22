@@ -25,14 +25,14 @@ Working with calculating cyclomatic number (problem5)
 
 #3Vishal Karmakar(40220935)
 
-Working with designing Scatter plot to analyse correlations between the data for
-Logical SLOC and WMC (problem 8)
+Working with calculating WMC, CF, and LCOM* (problem 6)
+Worked on calculating the Physical SLOC and Logical SLOC (problem 7)
+Working with designing Scatter plot to analyse correlations between the data for Logical SLOC and WMC (problem 8)
 
 #4Dharamjeet Kaur(40227330)
-Working with calculating WMC, CF, and LCOM* (problem 6)
+Working with providing estimate of the effort towards the project using UCP and COCOMO model (problem 3).
 
 #5Simranjeet Kaur(40232877)
-Working with providing estimate of the effort towards the project using UCP (problem 1).
 Working with Documenting the report for D2.
 
 
