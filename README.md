@@ -25,7 +25,6 @@ Welcome to METRICSTICS, a robust system designed for computing descriptive stati
 
 #3Vishal Karmakar(40220935)
 
--
 - Worked with calculating WMC, CF, and LCOM* (problem 6)
 - Worked on calculating the Physical SLOC and Logical SLOC (problem 7)
 - Worked with designing Scatter plot to analyse correlations between the data for Logical SLOC and WMC (problem 8)
