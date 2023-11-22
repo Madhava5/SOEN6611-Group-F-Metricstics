@@ -13,29 +13,7 @@ Welcome to METRICSTICS, a robust system designed for computing descriptive stati
 
 
 ## Roles and Responsibilites
-#1Abhishek Kanuganti(40224734)
-
-- Worked with Development of Code (problem4)
-- Worked with calculating Physical and logical SLOC (problem4)
-
-#2Madhava Sai Kumar Karnati(40227757)
-
-- Worked with Development of Code , Structuring code , Writing GUI code(problem 4)
-- Worked with calculating cyclomatic number (problem5)
-
-#3Vishal Karmakar(40220935)
-
-- Worked with calculating WMC, CF, and LCOM* (problem 6)
-- Worked on calculating the Physical SLOC and Logical SLOC (problem 7)
-- Worked with designing Scatter plot to analyse correlations between the data for Logical SLOC and WMC (problem 8)
-
-#4Dharamjeet Kaur(40227330)
-
-- Worked with providing estimate of the effort towards the project using UCP and COCOMO model (problem 3).
-
-#5Simranjeet Kaur(40232877)
-
-- Worked with Documenting the report for D2.
+https://docs.google.com/spreadsheets/d/1vH873eCx2WMg1KkuAurMLEoTIht_doST5vyglzxykWc/edit#gid=0
 
 
 ## Usage
